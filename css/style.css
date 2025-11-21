@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #F5F6FA;
+    /*background-color: #F5F6FA;*/
     font-family: Arial, sans-serif;
     height: 100vh;
     overflow: hidden;
@@ -65,11 +65,11 @@ header {
 
 .contenido {
     position: absolute;
-    top: 70px;
+    top: 70px;        /* MISMO alto del header */
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 20px;
+    padding: 0;       /* Para que la card quede pegada arriba */
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -96,6 +96,35 @@ header {
     display: flex;
     align-items: center;
 }
+
+/*CARD TITULO DE PROYECTOS*/
+.card-proyectos {
+    background-color: #eef3f3;
+    width: 100%;             /* Ocupar TODO el ancho */
+    margin: 0;               /* Quita espacios arriba y a los lados */
+    border-radius: 0;        /* Opcional: card pegada sin bordes */
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    gap: 20px;
+}
+
+
+.img-proyecto {
+    height: 60px;
+    object-fit: contain;
+    margin-left: 10px;
+}
+
+.titulo-proyecto {
+    font-size: 26px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+    flex: 1; /* Esto centra el texto ocupando el espacio disponible */
+}
+
 
 
 /* Responsivo */
@@ -126,3 +155,18 @@ header {
     }
 }
 
+@media (max-width: 600px) {
+    .card-proyectos {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .img-proyecto {
+        width: 40px;
+        height: 40px;
+    }
+
+    .titulo-proyecto {
+        font-size: 20px;
+    }
+}
