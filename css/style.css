@@ -1,1 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F5F6FA;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-image: url('../img/header_bg.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 20px; /* solo lado izquierdo */
+    padding-right: 0;   /* pegado al borde derecho */
+    box-sizing: border-box;
+}
+
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(22, 36, 65, 0.7); 
+    height: 100%; 
+    padding: 0 15px; 
+    border-radius: 0; 
+    box-sizing: border-box;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+
+
+.usuario img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #62DDFC;
+}
+
+.usuario .info {
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.contenido {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.titulo-portal {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-left: 15px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.titulo-portal .lab {
+    color: #62DDFC;
+}
+
+.titulo-portal .piif {
+    color: #ffffff;
+}
+
+.grupo-izquierdo {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Responsivo */
+@media (max-width: 600px) {
+    header {
+        height: 60px;
+    }
+    .usuario img {
+        width: 35px;
+        height: 35px;
+    }
+    .usuario .info {
+        font-size: 12px;
+    }
+}
+
+/*Oculta el nombre del portal en pantallas pequeñas*/
+@media (max-width: 600px) {
+    .titulo-portal {
+        display: none;
+    }
+}
+
+/*Oculta la información del usuario en pantallas pequeñas*/
+@media (max-width: 600px) {
+    .usuario .info {
+        display: none;
+    }
+}
 
