@@ -12,7 +12,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    height: 100px;
     background-image: url('../img/header_bg.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -28,7 +28,7 @@ header {
 
 
 .logo {
-    height: 50px;
+    height: 100px;
     width: auto;
 }
 
@@ -71,11 +71,11 @@ header {
 
 .contenido {
     position: absolute;
-    top: 70px;        /* MISMO alto del header */
+    top: 100px;        
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 0;       /* Para que la card quede pegada arriba */
+    padding: 20px;       
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -189,10 +189,20 @@ header {
 
     .grupo-izquierdo .bml {
         display: block;
+        height: 40px;
     }
 
     .contenido {
         top: 60px; 
         padding: 15px;
+    }
+
+    .logo{
+        height: 65px;
+    }
+
+    .usuario img{
+        width: 45px;
+        height: 45px;
     }
 }
