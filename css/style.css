@@ -32,6 +32,12 @@ header {
     width: auto;
 }
 
+.bml {
+    height: 50px;
+    width: auto;
+    display: none;
+}
+
 .usuario {
     display: flex;
     align-items: center;
@@ -168,5 +174,25 @@ header {
 
     .titulo-proyecto {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        background-image: none !important; 
+        background-color: #152340 !important; 
+    }
+
+    .grupo-izquierdo .logo {
+        content: url('../img/100anios.png');
+    }
+
+    .grupo-izquierdo .bml {
+        display: block;
+    }
+
+    .contenido {
+        top: 60px; 
+        padding: 15px;
     }
 }
