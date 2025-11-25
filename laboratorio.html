@@ -1,176 +1,269 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LabPIIF</title>
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/laboratorio.css">
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="grupo-izquierdo">     
-            <img src="img/logoBM-Mblanco.png" alt="Banco de México" class="bml"/>
-            <img src="img/logo1.png" alt="Banco de Mexico" class="logo" />
-        </div>
-
-<div class="usuario">
-
-    <!-- ICONOS MÓVIL -->
-    <div class="iconos-movil">
-        <button onclick="irInicio()">
+      <div class="grupo-izquierdo">
+        <img src="img/logoBM-Mblanco.png" alt="Banco de México" class="bml" />
+        <img src="img/logo1.png" alt="Banco de Mexico" class="logo" />
+      </div>
+      <div class="usuario">
+        <!-- ICONOS MÓVIL -->
+        <div class="iconos-movil">
+          <button onclick="irInicio()">
             <img src="img/home.png" alt="Inicio" class="homeButtom">
-        </button>
-        <button onclick="cerrarSesion()">
+          </button>
+          <button onclick="cerrarSesion()">
             <img src="img/exit.png" alt="Cerrar sesión">
-        </button>
-    </div>
-
-    <!-- ICONOS DESKTOP -->
-    <div class="botones-header desktop-only">
-        <button class="icono-header" onclick="irInicio(event)">
+          </button>
+        </div>
+        <!-- ICONOS DESKTOP -->
+        <div class="botones-header desktop-only">
+          <button class="icono-header" onclick="irInicio(event)">
             <img src="img/home.png" alt="Inicio" class="icono-img homeD">
-        </button>
-        <button class="icono-header cerrar" onclick="cerrarSesion(event)">
+          </button>
+          <button class="icono-header cerrar" onclick="cerrarSesion(event)">
             <img src="img/exit.png" alt="Cerrar sesión" class="icono-img">
-        </button>
-    </div>
-
-    <!-- INFORMACIÓN + FOTO -->
-    <div class="usuario-main">
-        <div class="info">
+          </button>
+        </div>
+        <!-- INFORMACIÓN + FOTO -->
+        <div class="usuario-main">
+          <div class="info">
             <div class="nombre-usuario">Luis Antonio Hernández De La Luz</div>
             <div class="numero-usuario">B16847</div>
+          </div>
+          <img src="img/b16847.png" alt="Usuario" class="foto-usuario">
         </div>
-        <img src="img/b16847.png" alt="Usuario" class="foto-usuario">
-    </div>
-
-    
-
-</div>
-
-
-
-
+      </div>
     </header>
-
     <div class="contenido">
+      <!-- BOTÓN HAMBURGUESA -->
+      <button class="btn-hamburguesa">☰</button>
+      <!-- LAYOUT GENERAL -->
+      <div class="layout">
+        
+        <!-- Fuentes del laboratorio -->
+        <div class="panel-fuentes">
+          
+          <!-- Botones de fuentes -->
+          <div class="tabs">
+            <button class="tab active" data-tab="institucionales">Fuentes institucionales</button>
+            <button class="tab" data-tab="locales">Fuentes locales</button>
+          </div>
+          
+          <!-- Contenedor de contenido de tabs -->
+          <div class="tab-contenido">
+            
+            <!-- Fuentes institucionales -->
+            <div class="tab-panel active" id="institucionales">
+              <button class="btn-agregar-fuente">Agregar fuente institucional</button>  
+              <input type="text" class="buscador" placeholder="Buscar fuentes institucionales...">
+              
+              <!-- Contenedor scrollable -->
+              <div class="lista-fuentes-contenedor">
+                <div class="lista-fuentes">
+                  
+                  <div class="fuente-item">
+                      <img src="img/info.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Mercados Históricos</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
 
-        <!-- BOTÓN HAMBURGUESA -->
-        <button class="btn-hamburguesa">☰</button>
+                  
 
-        <!-- LAYOUT GENERAL -->
-        <div class="layout">
+                  <!-- Resto de elementos .fuente-item iguales -->
 
-            <!-- PANEL DE FUENTES -->
-            <div class="panel-fuentes">
-
-    <!-- Tabs -->
-    <div class="tabs">
-        <button class="tab active" data-tab="institucionales">Fuentes institucionales</button>
-        <button class="tab" data-tab="locales">Fuentes locales</button>
-    </div>
-
-    <!-- Contenedor de contenido de tabs -->
-    <div class="tab-contenido">
-
-        <!-- TAB INSTITUCIONALES -->
-        <div class="tab-panel active" id="institucionales">
-
-            <input type="text" class="buscador" placeholder="Buscar fuentes institucionales...">
-
-            <div class="lista-fuentes">
-
-                <div class="fuente-item">
-                    <span>Mercados Históricos</span>
-                    <button class="btn-eliminar">✖</button>
                 </div>
-
-                <div class="fuente-item">
-                    <span>Inflación Nacional</span>
-                    <button class="btn-eliminar">✖</button>
-                </div>
-
-                <div class="fuente-item">
-                    <span>Producción Económica</span>
-                    <button class="btn-eliminar">✖</button>
-                </div>
-
+              </div>
+              
             </div>
+            
+            <!-- Fuentes locales -->
+            <div class="tab-panel" id="locales">
+              <button class="btn-agregar-fuente">Subir archivo</button>
+              <input type="text" class="buscador" placeholder="Buscar archivos locales...">
+              
+              <div class="lista-fuentes-contenedor">
+                <div class="lista-fuentes">
 
-            <button class="btn-agregar">Agregar fuente</button>
-        </div>
 
-        <!-- TAB LOCALES -->
-        <div class="tab-panel" id="locales">
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
 
-            <input type="text" class="buscador" placeholder="Buscar archivos locales...">
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="fuente-item">
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Archivo 1</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion info">Información</button>
+                              <button class="opcion eliminar">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
 
-            <div class="lista-fuentes">
 
-                <div class="fuente-item">
-                    <span>archivo_ventas.csv</span>
-                    <button class="btn-eliminar">✖</button>
+
                 </div>
-
-                <div class="fuente-item">
-                    <span>clientes.xlsx</span>
-                    <button class="btn-eliminar">✖</button>
-                </div>
-
+              </div>
+              
             </div>
+          
 
-            <button class="btn-agregar">Subir archivo</button>
+          </div>
+        
         </div>
+        
 
-    </div>
-
-</div>
-
-
-            <!-- PANEL DERECHO — NOTEBOOK -->
-            <section class="panel-notebook">
-
-                <!-- BOTONES DE ACCIÓN -->
-                <div class="acciones">
-                    <button class="btn" id="btnAgregarTexto">Agregar texto</button>
-                    <button class="btn" id="btnAgregarCodigo">Agregar código</button>
-                </div>
-
-                <!-- 📌 CONTENEDOR REAL DE CELDAS -->
-                <div class="notebook-celdas"></div>
-
-                <!-- CONTENIDO DEL NOTEBOOK -->
-                <div id="notebook">
-
-                    <!-- CELDA DE TEXTO -->
-                    <div class="celda">
-                        <p>Bienvenido al laboratorio de Python. Aquí puedes escribir notas y ejecutar código.</p>
-                    </div>
-
-                    <!-- CELDA DE CÓDIGO CON SIMULACIÓN -->
-                    <div class="celda celda-codigo">
-                        <pre class="codigo">
+        <!-- PANEL DERECHO — NOTEBOOK -->
+        <section class="panel-notebook">
+          <!-- BOTONES DE ACCIÓN -->
+          <div class="acciones">
+            <button class="btn" id="btnAgregarTexto">Agregar texto</button>
+            <button class="btn" id="btnAgregarCodigo">Agregar código</button>
+          </div>
+          <!-- 📌 CONTENEDOR REAL DE CELDAS -->
+          <div class="notebook-celdas"></div>
+          <!-- CONTENIDO DEL NOTEBOOK -->
+          <div id="notebook">
+            <!-- CELDA DE TEXTO -->
+            <div class="celda">
+              <p>Bienvenido al laboratorio de Python. Aquí puedes escribir notas y ejecutar código.</p>
+            </div>
+            <!-- CELDA DE CÓDIGO CON SIMULACIÓN -->
+            <div class="celda celda-codigo">
+              <pre class="codigo">
 x = 5
 y = 7
 print(f"Suma: {x+y}")
-                        </pre>
-
-                        <button class="btn btn-play">▶ Ejecutar</button>
-
-                        <div class="resultado" style="display:none;">
-                            Suma: 12
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-        </div>
+              </pre>
+              <button class="btn btn-play">▶ Ejecutar</button>
+              <div class="resultado" style="display:none;"> Suma: 12 </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-
     <script src="js/laboratorio.js"></script>
-</body>
+  </body>
 </html>
