@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    /*background-color: #F5F6FA;*/
+    background-color: #eee;
     font-family: Arial, sans-serif;
     height: 100vh;
     overflow: hidden;
@@ -130,6 +130,102 @@ header {
     text-align: center;
     flex: 1; /* Esto centra el texto ocupando el espacio disponible */
 }
+
+
+.panel {
+    border-radius: 10px;
+    border-color: #ddd;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* CARD GENERAL */
+.card-portal {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform .25s ease, box-shadow .25s ease;
+    margin: 20px auto;
+}
+
+/* CARD EN FORMATO HORIZONTAL */
+.card-horizontal {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+}
+
+/* LOGO */
+.card-logo img {
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* CONTENEDOR DEL TEXTO */
+.card-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* TÍTULO */
+.card-titulo {
+    font-size: 32px;
+    font-weight: 800;
+    color: #62DDFC; /* color Lab */
+    margin: 0;
+    line-height: 1.1;
+}
+
+.card-titulo span {
+    color: #152340; /* color PIIF */
+}
+
+/* DESCRIPCIÓN */
+.card-descripcion {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-top: 10px;
+    line-height: 1.5;
+    max-width: 360px;
+}
+
+/* RESPONSIVIDAD */
+@media (max-width: 600px) {
+    .card-horizontal {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-texto {
+        align-items: center;
+    }
+
+    .card-titulo {
+        font-size: 26px;
+    }
+
+    .card-descripcion {
+        font-size: 14px;
+    }
+
+    .card-logo img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+
 
 
 
