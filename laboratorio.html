@@ -15,13 +15,44 @@
             <img src="img/logo1.png" alt="Banco de Mexico" class="logo" />
         </div>
 
-        <div class="usuario">
-            <div class="info">
-                <div>Luis Antonio Hernández De La Luz</div>
-                <div>B16847</div>
-            </div>
-            <img src="img/b16847.png" alt="Usuario" />
+<div class="usuario">
+
+    <!-- ICONOS MÓVIL -->
+    <div class="iconos-movil">
+        <button onclick="irInicio()">
+            <img src="img/home.png" alt="Inicio" class="homeButtom">
+        </button>
+        <button onclick="cerrarSesion()">
+            <img src="img/exit.png" alt="Cerrar sesión">
+        </button>
+    </div>
+
+    <!-- ICONOS DESKTOP -->
+    <div class="botones-header desktop-only">
+        <button class="icono-header" onclick="irInicio(event)">
+            <img src="img/home.png" alt="Inicio" class="icono-img homeD">
+        </button>
+        <button class="icono-header cerrar" onclick="cerrarSesion(event)">
+            <img src="img/exit.png" alt="Cerrar sesión" class="icono-img">
+        </button>
+    </div>
+
+    <!-- INFORMACIÓN + FOTO -->
+    <div class="usuario-main">
+        <div class="info">
+            <div class="nombre-usuario">Luis Antonio Hernández De La Luz</div>
+            <div class="numero-usuario">B16847</div>
         </div>
+        <img src="img/b16847.png" alt="Usuario" class="foto-usuario">
+    </div>
+
+    
+
+</div>
+
+
+
+
     </header>
 
     <div class="contenido">
@@ -33,33 +64,70 @@
         <div class="layout">
 
             <!-- PANEL DE FUENTES -->
-            <aside class="panel-fuentes">
+            <div class="panel-fuentes">
 
-                <h2 class="titulo-panel">Fuentes disponibles</h2>
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" data-tab="institucionales">Fuentes institucionales</button>
+        <button class="tab" data-tab="locales">Fuentes locales</button>
+    </div>
 
-                <!-- Sección institucional -->
-                <div class="fuentes-seccion">
-                    <h3>Fuentes institucionales</h3>
-                    <input type="text" class="buscador" placeholder="Buscar...">
-                    <ul class="lista-fuentes">
-                        <li>BaseDatos1</li>
-                        <li>BaseDatos2</li>
-                    </ul>
-                    <button class="btn-agregar">Agregar</button>
+    <!-- Contenedor de contenido de tabs -->
+    <div class="tab-contenido">
+
+        <!-- TAB INSTITUCIONALES -->
+        <div class="tab-panel active" id="institucionales">
+
+            <input type="text" class="buscador" placeholder="Buscar fuentes institucionales...">
+
+            <div class="lista-fuentes">
+
+                <div class="fuente-item">
+                    <span>Mercados Históricos</span>
+                    <button class="btn-eliminar">✖</button>
                 </div>
 
-                <!-- Sección local -->
-                <div class="fuentes-seccion">
-                    <h3>Fuentes locales</h3>
-                    <input type="text" class="buscador" placeholder="Buscar...">
-                    <ul class="lista-fuentes">
-                        <li>archivo1.csv</li>
-                        <li>archivo2.xlsx</li>
-                    </ul>
-                    <button class="btn-agregar">Agregar</button>
+                <div class="fuente-item">
+                    <span>Inflación Nacional</span>
+                    <button class="btn-eliminar">✖</button>
                 </div>
 
-            </aside>
+                <div class="fuente-item">
+                    <span>Producción Económica</span>
+                    <button class="btn-eliminar">✖</button>
+                </div>
+
+            </div>
+
+            <button class="btn-agregar">Agregar fuente</button>
+        </div>
+
+        <!-- TAB LOCALES -->
+        <div class="tab-panel" id="locales">
+
+            <input type="text" class="buscador" placeholder="Buscar archivos locales...">
+
+            <div class="lista-fuentes">
+
+                <div class="fuente-item">
+                    <span>archivo_ventas.csv</span>
+                    <button class="btn-eliminar">✖</button>
+                </div>
+
+                <div class="fuente-item">
+                    <span>clientes.xlsx</span>
+                    <button class="btn-eliminar">✖</button>
+                </div>
+
+            </div>
+
+            <button class="btn-agregar">Subir archivo</button>
+        </div>
+
+    </div>
+
+</div>
+
 
             <!-- PANEL DERECHO — NOTEBOOK -->
             <section class="panel-notebook">
