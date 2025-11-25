@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LabPIIF</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/laboratorio.css">
+</head>
+<body>
+    <header>
+        <div class="grupo-izquierdo">     
+            <img src="img/logoBM-Mblanco.png" alt="Banco de México" class="bml"/>
+            <img src="img/logo1.png" alt="Banco de Mexico" class="logo" />
+        </div>
+
+        <div class="usuario">
+            <div class="info">
+                <div>Luis Antonio Hernández De La Luz</div>
+                <div>B16847</div>
+            </div>
+            <img src="img/b16847.png" alt="Usuario" />
+        </div>
+    </header>
+
+    <div class="contenido">
+
+        <!-- BOTÓN HAMBURGUESA -->
+        <button class="btn-hamburguesa">☰</button>
+
+        <!-- LAYOUT GENERAL -->
+        <div class="layout">
+
+            <!-- PANEL DE FUENTES -->
+            <aside class="panel-fuentes">
+
+                <h2 class="titulo-panel">Fuentes disponibles</h2>
+
+                <!-- Sección institucional -->
+                <div class="fuentes-seccion">
+                    <h3>Fuentes institucionales</h3>
+                    <input type="text" class="buscador" placeholder="Buscar...">
+                    <ul class="lista-fuentes">
+                        <li>BaseDatos1</li>
+                        <li>BaseDatos2</li>
+                    </ul>
+                    <button class="btn-agregar">Agregar</button>
+                </div>
+
+                <!-- Sección local -->
+                <div class="fuentes-seccion">
+                    <h3>Fuentes locales</h3>
+                    <input type="text" class="buscador" placeholder="Buscar...">
+                    <ul class="lista-fuentes">
+                        <li>archivo1.csv</li>
+                        <li>archivo2.xlsx</li>
+                    </ul>
+                    <button class="btn-agregar">Agregar</button>
+                </div>
+
+            </aside>
+
+            <!-- PANEL DERECHO — NOTEBOOK -->
+            <section class="panel-notebook">
+
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="acciones">
+                    <button class="btn" id="btnAgregarTexto">Agregar texto</button>
+                    <button class="btn" id="btnAgregarCodigo">Agregar código</button>
+                </div>
+
+                <!-- 📌 CONTENEDOR REAL DE CELDAS -->
+                <div class="notebook-celdas"></div>
+
+                <!-- CONTENIDO DEL NOTEBOOK -->
+                <div id="notebook">
+
+                    <!-- CELDA DE TEXTO -->
+                    <div class="celda">
+                        <p>Bienvenido al laboratorio de Python. Aquí puedes escribir notas y ejecutar código.</p>
+                    </div>
+
+                    <!-- CELDA DE CÓDIGO CON SIMULACIÓN -->
+                    <div class="celda celda-codigo">
+                        <pre class="codigo">
+x = 5
+y = 7
+print(f"Suma: {x+y}")
+                        </pre>
+
+                        <button class="btn btn-play">▶ Ejecutar</button>
+
+                        <div class="resultado" style="display:none;">
+                            Suma: 12
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="js/laboratorio.js"></script>
+</body>
+</html>
