@@ -68,3 +68,67 @@ document.getElementById("btnAgregarCodigo").addEventListener("click", () => {
 });
 
 
+/* ========================
+   TABS DE FUENTES
+======================== */
+document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        // quitar active de tabs
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        // mostrar panel correspondiente
+        const id = tab.dataset.tab;
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+    });
+});
+
+
+/* ========================
+   BUSCADOR
+======================== */
+document.querySelectorAll(".buscador").forEach(buscador => {
+    buscador.addEventListener("input", () => {
+        const texto = buscador.value.toLowerCase();
+        const panel = buscador.closest(".tab-panel");
+
+        panel.querySelectorAll(".fuente-item").forEach(item => {
+            const nombre = item.querySelector("span").textContent.toLowerCase();
+            item.style.display = nombre.includes(texto) ? "flex" : "none";
+        });
+    });
+});
+
+
+
+const userMenuBtn = document.getElementById("userMenuBtn");
+const userMenu = document.getElementById("userMenu");
+
+userMenuBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
+});
+
+// Evita que clicks dentro del menú cierren el menú
+document.querySelectorAll("#userMenu button").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+});
+
+document.addEventListener("click", (e) => {
+    if (!userMenu.contains(e.target) && e.target !== userMenuBtn) {
+        userMenu.style.display = "none";
+    }
+});
+
+function irInicio() {
+    console.log("Ir a inicio");
+    window.location.href = "index.html";
+}
+
+function cerrarSesion() {
+    console.log("Cerrar sesión");
+    alert("Cerrar sesión accionada");
+}
