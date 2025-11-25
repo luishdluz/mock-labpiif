@@ -36,7 +36,7 @@ document.getElementById("btnAgregarTexto").addEventListener("click", () => {
 
 
 // --- Agregar código ---
-document.getElementById("btnAgregarCodigo").addEventListener("click", () => {
+/*document.getElementById("btnAgregarCodigo").addEventListener("click", () => {
 
     const celda = document.createElement("div");
     celda.className = "celda";
@@ -65,7 +65,7 @@ document.getElementById("btnAgregarCodigo").addEventListener("click", () => {
 
     // Insertar celda al notebook
     document.querySelector(".notebook-celdas").appendChild(celda);
-});
+});*/
 
 
 /* ========================
@@ -126,3 +126,132 @@ document.addEventListener("click", function (e) {
         e.stopPropagation();
     }
 });
+
+
+let celdaActiva = null;
+
+  // Selección de celda
+  document.querySelectorAll('#notebook-scroll .celda').forEach(celda => {
+    celda.addEventListener('click', () => {
+      if(celdaActiva) celdaActiva.classList.remove('celda-activa');
+      celdaActiva = celda;
+      celdaActiva.classList.add('celda-activa');
+    });
+  });
+
+  // Ejecutar celda activa
+  document.querySelector('.btn-play-global').addEventListener('click', () => {
+    if(!celdaActiva) {
+      console.log('Selecciona una celda para ejecutar.');
+      return;
+    }
+    const resultado = celdaActiva.querySelector('.resultado');
+    if(resultado) resultado.style.display = 'block';
+  });
+
+
+  function agregarCeldaCodigo() {
+  const notebook = document.getElementById('notebook-scroll');
+  const totalCeldasCodigo = notebook.querySelectorAll('.celda-codigo').length;
+  const nuevaId = totalCeldasCodigo + 1;
+
+  const celda = document.createElement('div');
+  celda.classList.add('celda', 'celda-codigo');
+  celda.dataset.celda = nuevaId;
+
+  const editorDiv = document.createElement('div');
+  editorDiv.classList.add('editor');
+  editorDiv.id = `editor-${nuevaId}`;
+  editorDiv.style.height = '150px';
+  editorDiv.style.border = '1px solid #ccc';
+  editorDiv.style.borderRadius = '6px';
+
+  const resultadoDiv = document.createElement('div');
+  resultadoDiv.classList.add('resultado');
+  resultadoDiv.style.display = 'none';
+  resultadoDiv.innerText = 'Resultado aparecerá aquí';
+
+  celda.appendChild(editorDiv);
+  celda.appendChild(resultadoDiv);
+  notebook.appendChild(celda);
+
+  // Inicializar Monaco
+  require(['vs/editor/editor.main'], function () {
+    const nuevoEditor = monaco.editor.create(editorDiv, {
+      value: `# Código por default: Hola Mundo\nprint("Hola mundo")`,
+      language: 'python',
+      theme: 'vs-light',
+      automaticLayout: true,
+      minimap: { enabled: false }
+    });
+
+    // Evento para marcar celda activa
+    celda.addEventListener('click', () => {
+      document.querySelectorAll('.celda').forEach(c => c.classList.remove('celda-activa'));
+      celda.classList.add('celda-activa');
+      // Guardar referencia del editor activo
+      window.editorActivo = nuevoEditor;
+      window.resultadoActivo = resultadoDiv;
+    });
+  });
+}
+
+// Botón global ejecutar
+document.querySelector('.btn-play-global').addEventListener('click', () => {
+  if (window.editorActivo && window.resultadoActivo) {
+    const codigo = window.editorActivo.getValue();
+    window.resultadoActivo.style.display = 'block';
+    window.resultadoActivo.innerText = 'Resultado simulado:\n' + codigo;
+  } else {
+    console.log('Selecciona una celda para ejecutar');
+  }
+});
+
+document.getElementById('btnAgregarCodigo').addEventListener('click', agregarCeldaCodigo);
+
+
+
+// Función para agregar celda de texto
+function agregarCeldaTexto() {
+  const notebook = document.getElementById('notebook-scroll');
+
+  const celda = document.createElement('div');
+  celda.classList.add('celda', 'celda-texto');
+  
+  // Contenido editable
+  const p = document.createElement('p');
+  p.innerText = 'Haz clic aquí para editar esta celda de texto...';
+  p.contentEditable = 'true'; // Permite editar
+  p.style.minHeight = '50px';
+  
+  celda.appendChild(p);
+  notebook.appendChild(celda);
+
+  // Evento para marcar celda activa
+  celda.addEventListener('click', () => {
+    document.querySelectorAll('.celda').forEach(c => c.classList.remove('celda-activa'));
+    celda.classList.add('celda-activa');
+
+    // Limpiar editor activo si se selecciona celda de texto
+    window.editorActivo = null;
+    window.resultadoActivo = null;
+  });
+}
+
+// Inicializar celdas de texto existentes para ser editables
+document.querySelectorAll('.celda:not(.celda-codigo)').forEach(celda => {
+  const p = celda.querySelector('p');
+  if (p) p.contentEditable = 'true';
+
+  celda.addEventListener('click', () => {
+    document.querySelectorAll('.celda').forEach(c => c.classList.remove('celda-activa'));
+    celda.classList.add('celda-activa');
+
+    // Limpiar editor activo si se selecciona celda de texto
+    window.editorActivo = null;
+    window.resultadoActivo = null;
+  });
+});
+
+// Conectar botón de agregar texto
+document.getElementById('btnAgregarTexto').addEventListener('click', agregarCeldaTexto);
