@@ -102,26 +102,6 @@ document.querySelectorAll(".buscador").forEach(buscador => {
 
 
 
-const userMenuBtn = document.getElementById("userMenuBtn");
-const userMenu = document.getElementById("userMenu");
-
-userMenuBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); 
-    userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
-});
-
-// Evita que clicks dentro del menú cierren el menú
-document.querySelectorAll("#userMenu button").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-    });
-});
-
-document.addEventListener("click", (e) => {
-    if (!userMenu.contains(e.target) && e.target !== userMenuBtn) {
-        userMenu.style.display = "none";
-    }
-});
 
 function irInicio() {
     console.log("Ir a inicio");
@@ -132,3 +112,17 @@ function cerrarSesion() {
     console.log("Cerrar sesión");
     alert("Cerrar sesión accionada");
 }
+
+
+document.addEventListener("click", function (e) {
+    const isMenuBtn = e.target.classList.contains("menu-btn");
+
+    // Cerrar todos los menús
+    document.querySelectorAll(".menu-opciones").forEach(m => m.style.display = "none");
+
+    if (isMenuBtn) {
+        const opciones = e.target.nextElementSibling;
+        opciones.style.display = "flex";  // mostrar menú de esa fuente
+        e.stopPropagation();
+    }
+});
