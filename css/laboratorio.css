@@ -255,7 +255,6 @@
     }
 
     /* Oculta nombre e iconos desktop */
-    .info,
     .desktop-only {
         display: none !important;
     }
@@ -517,7 +516,7 @@
 
 
 .lista-fuentes-contenedor {
-  max-height: calc(100vh - 360px); /* Ajusta según altura de tabs + botón + buscador */
+  height: calc(100vh - 360px); /* Ajusta según altura de tabs + botón + buscador */
   overflow-y: auto;
   position: relative;
   background: white;
@@ -641,11 +640,45 @@
 
   /* Contenedor de lista scrollable */
   .lista-fuentes-contenedor {
-    max-height: calc(100vh - 300px); /* Ajusta según alto de header + botones */
+    height: calc(100vh - 305px); /* Ajusta según alto de header + botones */
     overflow-y: auto;
     background: white;
     padding-top: 10px;
-    z-index: 1;
+    z-index: 3000;
   }
 }
 
+@media (max-width: 900px) {
+  .menu-opciones {
+    position: fixed !important;  /* lo saca del flujo del contenedor */
+    top: auto;                   /* lo ajustaremos con JS */
+    left: auto;
+    right: 10px;                 /* opcional, según diseño */
+    z-index: 3000;               /* muy arriba */
+  }
+}
+
+
+/* ACCIONES FIJAS ARRIBA */
+.acciones-fijas {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 10px 0;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* CONTENEDOR DE CELDAS CON SCROLL */
+#notebook-scroll {
+  max-height: calc(100vh - 60px); /* Ajusta según altura de panel fijo */
+  overflow-y: auto;
+  padding-top: 10px;
+}
+
+/* CELDA ACTIVA */
+.celda-activa {
+  border: 2px solid #04b3bb;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
