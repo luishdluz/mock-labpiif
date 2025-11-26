@@ -39,6 +39,9 @@
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
+  padding-top: 5;
+  padding-bottom: 5;
+  padding-right: 5;
 }
 
 .acciones {
