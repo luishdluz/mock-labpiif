@@ -62,45 +62,45 @@
             
             <!-- Fuentes institucionales -->
             <div class="tab-panel active" id="institucionales">
-              <button class="btn-agregar-fuente">Agregar fuente institucional</button>  
+              <button class="btn-agregar-fuente" id="agregarFuenteInstitucional">Agregar fuente institucional</button>  
               <input type="text" class="buscador" placeholder="Buscar fuentes institucionales...">
               
               <!-- Contenedor scrollable -->
               <div class="lista-fuentes-contenedor">
-                <div class="lista-fuentes">
+                <div class="lista-fuentes fuentesInstitucionales">
                   
-                  <div class="fuente-item">
+                  <div class="fuente-item" identificador='1f8a667a-1e7b-430c-ab61-041ae06ac315'>
                       <img src="img/info.png" class="fuente-icono" alt="icono">
-                      <span class="fuente-nombre">Mercados Históricos</span>
+                      <span class="fuente-nombre">Operaciones de Préstamo. Costo promedio ponderado de préstamos concertados</span>
                       <div class="fuente-menu">
                           <button class="menu-btn">☰</button>
                           <div class="menu-opciones">
-                              <button class="opcion info">Información</button>
-                              <button class="opcion eliminar">Eliminar</button>
+                              <button class="opcion usar">Usar</button>
+                              <button class="opcion eliminar">Remover</button>
                           </div>
                       </div>
                   </div>
 
-                  <div class="fuente-item">
+                  <div class="fuente-item" identificador='690f849d-c5c2-456e-80ca-126bad65084f'>
                       <img src="img/info.png" class="fuente-icono" alt="icono">
-                      <span class="fuente-nombre">Mercados Históricos</span>
+                      <span class="fuente-nombre">Operaciones de compra - venta. Volumen operado de títulos en moneda nacional y UDIS: por emisión y tipo de contraparte</span>
                       <div class="fuente-menu">
                           <button class="menu-btn">☰</button>
                           <div class="menu-opciones">
-                              <button class="opcion info">Información</button>
-                              <button class="opcion eliminar">Eliminar</button>
+                              <button class="opcion usar">Usar</button>
+                              <button class="opcion eliminar">Remover</button>
                           </div>
                       </div>
                   </div>
 
-                  <div class="fuente-item">
+                  <div class="fuente-item" identificador='b995420c-a8b0-49ce-8f68-c62de7b95095'>
                       <img src="img/info.png" class="fuente-icono" alt="icono">
-                      <span class="fuente-nombre">Mercados Históricos</span>
+                      <span class="fuente-nombre">Operaciones de reporto: volumen, contrapartes, plazos, tasas, etc.</span>
                       <div class="fuente-menu">
                           <button class="menu-btn">☰</button>
                           <div class="menu-opciones">
-                              <button class="opcion info">Información</button>
-                              <button class="opcion eliminar">Eliminar</button>
+                              <button class="opcion usar">Usar</button>
+                              <button class="opcion eliminar">Remover</button>
                           </div>
                       </div>
                   </div>
@@ -116,21 +116,33 @@
             
             <!-- Fuentes locales -->
             <div class="tab-panel" id="locales">
-              <button class="btn-agregar-fuente">Subir archivo</button>
+              <button class="btn-agregar-fuente" id="agregarFuenteLocal">Subir archivo</button>
               <input type="text" class="buscador" placeholder="Buscar archivos locales...">
               
               <div class="lista-fuentes-contenedor">
-                <div class="lista-fuentes">
+                <div class="lista-fuentes fuentesLocales">
 
 
-                  <div class="fuente-item">
+                  <div class="fuente-item" archivo='contrapartes' extension='xlsx'>
                       <img src="img/document.png" class="fuente-icono" alt="icono">
-                      <span class="fuente-nombre">Archivo 1</span>
+                      <span class="fuente-nombre">Información de contrapartes</span>
                       <div class="fuente-menu">
                           <button class="menu-btn">☰</button>
                           <div class="menu-opciones">
-                              <button class="opcion info">Información</button>
-                              <button class="opcion eliminar">Eliminar</button>
+                              <button class="opcion usarArchivo">Usar</button>
+                              <button class="opcion eliminar">Remover</button>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="fuente-item" archivo='rentaVar' extension='csv'>
+                      <img src="img/document.png" class="fuente-icono" alt="icono">
+                      <span class="fuente-nombre">Mercado de renta variable</span>
+                      <div class="fuente-menu">
+                          <button class="menu-btn">☰</button>
+                          <div class="menu-opciones">
+                              <button class="opcion usarArchivo">Usar</button>
+                              <button class="opcion eliminar">Remover</button>
                           </div>
                       </div>
                   </div>
@@ -149,9 +161,20 @@
        <section class="panel-notebook">
   <!-- PANEL FIJO DE BOTONES -->
   <div class="acciones-fijas">
-    <button class="btn" id="btnAgregarTexto">Agregar texto</button>
-    <button class="btn" id="btnAgregarCodigo">Agregar código</button>
-    <button class="btn btn-play-global">▶ Ejecutar celda activa</button>
+    <button class="btn-accion btn-play-global" id="btnEjecutarGlobal" data-tooltip="Ejecutar">
+        <img src="img/play.png" alt="Ejecutar">
+    </button>
+    <button class="btn-accion" id="btnAgregarTexto" data-tooltip="Agregar celda de texto">
+        <img src="img/agregarCeldaTexto.png" alt="Agregar texto">
+    </button>
+
+    <button class="btn-accion" id="btnAgregarCodigo" data-tooltip="Agregar celda de código">
+        <img src="img/agregarCeldaCodigo.png" alt="Agregar código">
+    </button> 
+    <button class="btn-accion btn-eliminar-global" data-tooltip="Eliminar celda">
+        <img src="img/delete.png" alt="Agregar código">
+    </button>
+
   </div>
 
   <!-- CONTENEDOR DEL NOTEBOOK CON SCROLL -->
@@ -180,6 +203,53 @@
     <!-- Puedes agregar más celdas aquí -->
   </div>
 </section>
+
+
+
+<!-- MODAL -->
+<div id="modalFuentes" class="modal-overlay">
+  <div class="modal-contenido">
+
+      <h2>Seleccionar fuente institucional</h2>
+
+      <div class="tabla-responsive">
+        <table class="tabla-fuentes" id="tablaFuentes">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rellenado dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+
+      <button class="modal-cerrar" id="cerrarModalFuentes">Cerrar</button>
+
+  </div>
+</div>
+
+<!-- MODAL PARA SUBIR ARCHIVO -->
+<div id="modalArchivo" class="modal-archivo oculto">
+  <div class="modal-contenido">
+    <h2>Agregar archivo local</h2>
+
+    <label>Nombre del archivo:</label>
+    <input type="text" id="nombreArchivoManual" placeholder="Ej: Información de contrapartes">
+
+    <label>Seleccionar archivo:</label>
+    <input type="file" id="archivoLocal">
+
+    <div class="modal-acciones">
+      <button id="btnCancelarArchivo" class="btn-cancelar">Cancelar</button>
+      <button id="btnAgregarArchivo" class="btn-confirmar">Agregar archivo</button>
+    </div>
+  </div>
+</div>
+
 
 
 

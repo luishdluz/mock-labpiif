@@ -1,53 +1,167 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LabPIIF</title>
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/laboratorio.css">
+    <link rel="stylesheet" href="css/principal.css">
+  </head>
+  <body>
     <header>
-        <div class="grupo-izquierdo">     
-            
-            <img src="img/logoBM-Mblanco.png" alt="Banco de México" class="bml"/>
-            <img src="img/logo1.png" alt="Banco de Mexico" class="logo" />
-            <!--<div class="titulo-portal">
-                <span class="lab">Lab</span><span class="piif">PIIF</span>
-            </div>-->
+      <div class="grupo-izquierdo">
+        <img src="img/logoBM-Mblanco.png" alt="Banco de México" class="bml" />
+        <img src="img/logo1.png" alt="Banco de Mexico" class="logo" />
+      </div>
+      <div class="usuario">
+        <div class="iconos-movil">
+          <button onclick="cerrarSesion()">
+            <img src="img/exit.png" alt="Cerrar sesión">
+          </button>
         </div>
-        <div class="usuario">
-            <div class="info">
-                <div>Luis Antonio Hernández De La Luz</div>
-                <div>B16847</div>
-            </div>
-            <img src="img/b16847.png" alt="Usuario" />
+        <div class="botones-header desktop-only">
+          <button class="icono-header cerrar" onclick="cerrarSesion(event)">
+            <img src="img/exit.png" alt="Cerrar sesión" class="icono-img">
+          </button>
         </div>
+        <div class="usuario-main">
+          <div class="info">
+            <div class="nombre-usuario">Luis Antonio Hernández De La Luz</div>
+            <div class="numero-usuario">B16847</div>
+          </div>
+          <img src="img/b16847.png" alt="Usuario" class="foto-usuario">
+        </div>
+      </div>
     </header>
+    <div class="contenedor-app">
 
-    <div class="contenido">
-        
+      <!-- Card inicial con menu -->
+      <div class="card-inicial">
+        <!-- Logo y nombre del portal -->
+        <div class="fila-superior">
+          <div class="columna-izq">
+            <img src="img/Labpiif.png" alt="LabPIIF" class="logo-lab">
+          </div>
+          <div class="columna-der">
+            <h1 class="titulo-lab">LabPIIF</h1>
+          </div>
+        </div>
 
-<div class="card-portal card-horizontal">
-    <div class="card-logo">
-        <img src="img/Labpiif.png" alt="Logo LabPIIF">
+        <!-- Menu de proyectos -->
+        <div class="fila-tabs">
+          <button class="tab-btn activo" data-tab="personales">Proyectos Personales</button>
+          <button class="tab-btn" data-tab="compartidos">Proyectos Compartidos</button>
+        </div>
+      </div>
+
+     <!-- TAB: PROYECTOS PERSONALES -->
+<div id="personales" class="contenido-tab visible">
+
+  <div class="buscador-contenedor">
+    <input type="text" id="buscar-personales" placeholder="Buscar proyecto...">
+    <button id="btn-crear-personal">Crear proyecto</button>
+  </div>
+
+  <div id="menu-flotante" class="menu-opciones">
+    <div class="opcion">Editar</div>
+    <div class="opcion">Compartir</div>
+    <div class="opcion">Eliminar</div>
+  </div>
+
+  <div class="grid-proyectos" id="grid-personales">
+
+    <div class="card-proyecto" data-nombre="Reporte Semanal">
+      <h3>Reporte Semanal</h3>
+      <p>Proyecto de análisis automático</p>
+      <button class="btn-menu-card">☰</button>
     </div>
 
-    <div class="card-texto">
-        <h2 class="card-titulo">Lab<span>PIIF</span></h2>
-
-        <p class="card-descripcion">
-            Plataforma interna diseñada para la gestión eficiente de proyectos,
-            herramientas analíticas y recursos tecnológicos orientados a la innovación.
-        </p>
+    <div class="card-proyecto" data-nombre="Indicadores Macro">
+      <h3>Indicadores Macro</h3>
+      <p>Modelos comparativos</p>
+      <button class="btn-menu-card">☰</button>
     </div>
+
+    <div class="card-proyecto" data-nombre="Reporte Semanal">
+      <h3>Reporte Semanal</h3>
+      <p>Proyecto de análisis automático</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Indicadores Macro">
+      <h3>Indicadores Macro</h3>
+      <p>Modelos comparativos</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Reporte Semanal">
+      <h3>Reporte Semanal</h3>
+      <p>Proyecto de análisis automático</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Indicadores Macro">
+      <h3>Indicadores Macro</h3>
+      <p>Modelos comparativos</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Reporte Semanal">
+      <h3>Reporte Semanal</h3>
+      <p>Proyecto de análisis automático</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Indicadores Macro">
+      <h3>Indicadores Macro</h3>
+      <p>Modelos comparativos</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Reporte Semanal">
+      <h3>Reporte Semanal</h3>
+      <p>Proyecto de análisis automático</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Indicadores Macro">
+      <h3>Indicadores Macro</h3>
+      <p>Modelos comparativos</p>
+      <button class="btn-menu-card">☰</button>
+    </div>
+
+
+
+
+  </div>
+
+</div>
+
+<!-- TAB: PROYECTOS COMPARTIDOS -->
+<div id="compartidos" class="contenido-tab">
+
+  <div class="buscador-contenedor">
+    <input type="text" id="buscar-compartidos" placeholder="Buscar proyecto compartido...">
+  </div>
+
+  <div class="grid-proyectos" id="grid-compartidos">
+    <div class="card-proyecto" data-nombre="Dashboard Riesgos">
+      <h3>Dashboard Riesgos</h3>
+      <p>Panel colaborativo</p>
+    </div>
+
+    <div class="card-proyecto" data-nombre="Proyección Anual">
+      <h3>Proyección Anual</h3>
+      <p>Análisis compartido</p>
+    </div>
+  </div>
+
 </div>
 
 
 
-
-
-        
     </div>
-</body>
+    <script src="js/index.js"></script>
+  </body>
 </html>
