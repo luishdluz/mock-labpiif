@@ -1,0 +1,767 @@
+/* ============================
+   RESETEO MODERNO
+============================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f4f6f8;
+  color: #1a1a1a;
+  overflow-x: hidden; /* evita scroll horizontal */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ============================================
+   HEADER FIJO
+============================================ */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+============================================ */
+.contenedor-app {
+  position: relative;
+  width: 100%;
+  margin-top: 100px; /* Desktop */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+  .contenedor-app {
+    margin-top: 70px;
+  }
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+   CARD INICIAL
+============================ */
+.card-inicial {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 18px;        
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;                 
+  animation: aparecer 0.3s ease-out;
+}
+
+/* Animación card */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+   FILA SUPERIOR
+============================ */
+.fila-superior {
+  display: grid;
+  grid-template-columns: 90px 1fr; 
+  align-items: center;
+  gap: 12px;                        
+}
+
+.logo-lab {
+  width: 100%;
+  max-width: 80px;          
+  height: auto;
+}
+
+.titulo-lab {
+  font-size: 1.6rem;        
+  font-weight: 700;
+  margin: 0;
+  color: green;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .fila-superior {
+    grid-template-columns: 65px 1fr; 
+  }
+  .logo-lab {
+    max-width: 60px;
+  }
+  .titulo-lab {
+    font-size: 1.3rem;
+  }
+}
+
+/* ============================
+   TABS
+============================ */
+.fila-tabs {
+  display: flex;
+  gap: 10px;                 
+  justify-content: center;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 10px;         
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 9px 10px;                  
+  background: #f2f2f2;
+  border: none;
+  border-radius: 6px;        
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: bold;
+  color: #152340;
+}
+
+.tab-btn:hover {
+  color: #04b3bb;
+}
+
+.tab-btn.activo {
+  background: #04b3bb;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================
+   CONTENIDO DE TABS
+============================ */
+.contenido-tab {
+  display: none;
+  animation: fade 0.25s ease;
+
+  height: calc(100vh - 240px); /* espacio dinámico */
+  overflow-y: auto; /* SCROLL INTERNO */
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+
+.contenido-tab.visible {
+  display: block;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================= BUSCADOR ========================= */
+
+.buscador-contenedor {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #f4f6f8;
+  padding: 12px 5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.buscador-contenedor input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.buscador-contenedor button {
+  padding: 10px 14px;
+  background: -webkit-linear-gradient(top, #337ab7 0%, #265a88 100%) !important;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.buscador-contenedor button:hover {
+  background: -webkit-linear-gradient(top, #337ab7 0%, #265a88 100%) !important;
+}
+
+/* ========================= GRID DE CARDS ========================= */
+
+.grid-proyectos {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr; /* móvil 1 columna */
+  gap: 15px;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .grid-proyectos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Escritorio */
+@media (min-width: 1025px) {
+  .grid-proyectos {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* ========================= CARD DE PROYECTO ========================= */
+
+.card-proyecto {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: .25s;
+  border-left: 5px solid #007279;
+  width: 100%; /* evita overflow */
+}
+
+.card-proyecto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.card-proyecto h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: green;
+  background: #eef3f3;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.card-proyecto p {
+  margin: 8px 0 0;
+  color: #555;
+  font-size: .9rem;
+  line-height: 1.3;
+}
+
+/* menú hamburguesa dentro del card */
+.menu-hamburguesa {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: #007279;
+}
+
+.menu-opciones {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  width: 140px;
+  z-index: 20;
+}
+
+.menu-opciones button {
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: .9rem;
+  cursor: pointer;
+}
+
+.menu-opciones button:hover {
+  background: #f3f3f3;
+}
+
+
+/* ============================================
+   FIX ABSOLUTO PARA OVERFLOW EN MÓVILES
+============================================ */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Forzar que ningún contenedor pueda exceder ancho */
+* {
+  max-width: 100%;
+}
+
+/* Evitar que el sticky del buscador expanda el ancho */
+.buscador-contenedor {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Evitar que inputs o botones generen overflow */
+.buscador-contenedor input,
+.buscador-contenedor button {
+  max-width: 100%;
+}
+
+/* Cards nunca deben hacer overflow */
+.card-proyecto {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Grid sin desbordes */
+.grid-proyectos {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Los tabs tampoco deben desbordar */
+.contenido-tab {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+
+/* ============================
+   CARD-INICIAL EN ESCRITORIO
+============================ */
+@media (min-width: 768px) {
+  .card-inicial {
+    display: grid;
+    grid-template-columns: 120px 1fr 130px; /* logo - título - taps */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .fila-superior {
+    grid-column: 1 / 3; /* abarca logo y título juntos */
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* TABS en tercera columna en forma vertical */
+  .fila-tabs {
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: none;   /* se quita el borde */
+    padding-top: 0;
+  }
+
+  .tab-btn {
+    width: 100%;
+  }
+}
+
+
+/* ============================
+   CARD-INICIAL EN MÓVIL
+============================ */
+@media (max-width: 767px) {
+  .card-inicial {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fila-tabs {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid #e6e6e6;
+    padding-top: 15px;
+  }
+}
+
+
+/*** MENU 
+
+/* Botón de hamburguesa */
+.btn-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono hamburguesa */
+.icono-menu {
+  width: 22px;
+  height: 2px;
+  background-color: #333;
+  position: relative;
+  display: block;
+  border-radius: 2px;
+}
+
+/* Líneas adicionales */
+.icono-menu::before,
+.icono-menu::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 2px;
+  background-color: #333;
+  left: 0;
+  border-radius: 2px;
+}
+
+.icono-menu::before {
+  top: -6px;
+}
+
+.icono-menu::after {
+  top: 6px;
+}
+
+
+/* Contenedor del botón y menú */
+.menu-boton-contenedor {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;  /* 🔥 manda el botón a la derecha */
+  position: relative;
+}
+
+/* Botón */
+.btn-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Menú desplegable */
+.menu-opciones {
+  display: none;
+  position: absolute;
+  right: 0;               /* 🔥 alineado al lado derecho */
+  top: 28px;
+  background: white;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 99;
+  min-width: 120px;
+}
+
+.menu-opciones button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
+.menu-opciones button:hover {
+  background: #f1f1f1;
+}
+img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Menú flotante */
+.menu-opciones {
+  position: absolute;
+  bottom: 35px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+}
+
+.menu-opciones button {
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  width: 140px;
+}
+
+.menu-opciones button:hover {
+  background: #f3f3f3;
+}
+
+/* Oculto por defecto */
+.oculto {
+  display: none;
+}
+
+
+/* Botón de hamburguesa */
+.btn-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono hamburguesa */
+.icono-menu {
+  width: 22px;
+  height: 2px;
+  background-color: #333;
+  position: relative;
+  display: block;
+  border-radius: 2px;
+}
+
+/* Líneas adicionales */
+.icono-menu::before,
+.icono-menu::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 2px;
+  background-color: #333;
+  left: 0;
+  border-radius: 2px;
+}
+
+.icono-menu::before {
+  top: -6px;
+}
+
+.icono-menu::after {
+  top: 6px;
+}
+
+
+/* Contenedor del botón y menú */
+.menu-boton-contenedor {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;  /* 🔥 manda el botón a la derecha */
+  position: relative;
+}
+
+/* Botón */
+.btn-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Menú desplegable */
+.menu-opciones {
+  display: none;
+  position: absolute;
+  right: 0;               /* 🔥 alineado al lado derecho */
+  top: 28px;
+  background: white;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 99;
+  min-width: 120px;
+}
+
+.menu-opciones button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
+.menu-opciones button:hover {
+  background: #f1f1f1;
+}
+
+
+.menu-opciones {
+  position: absolute;
+  top: -105px;       /* Aparece DEBAJO del botón */
+  right: -150px;        
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 6px 0;
+  display: none;
+  z-index: 999999999;
+  width: 150px;
+}
+
+
+.menu-boton-contenedor {
+  position: relative;
+}
+
+.menu-opciones button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: white;
+  text-align: left;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.menu-opciones button:hover {
+  background: #f0f0f0;
+}
+
+.card-proyecto {
+  position: relative;
+}
+
+
+/* menú flotante en body */
+.menu-opciones.menu-opciones-floating {
+  display: none; /* se activará via JS (display:block) */
+  position: fixed;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  padding: 6px 0;
+  z-index: 9999;
+  min-width: 140px;
+}
+
+/* botones dentro del menú */
+.menu-opciones.menu-opciones-floating button {
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-opciones.menu-opciones-floating button:hover {
+  background: #f5f5f5;
+}
+
+/* Asegurar que .card-proyecto no clippee (si tienes overflow:hidden lo quita) */
+.card-proyecto {
+  position: relative; /* necesario */
+  overflow: visible;  /* importante para que no oculte elementos absolutos, pero no necesario porque el menú está en body */
+}
+
+.menu-opciones.menu-opciones-floating {
+  z-index: 999999999; /* muy por encima de cualquier stacking context */
+  position: fixed;
+}
+
+.grid-proyectos,
+.contenedor-app {
+  overflow: visible !important;
+}
+
+
+.btn-menu-card {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.menu-opciones {
+  position: fixed !important;
+  display: none;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  padding: 6px 0;
+  z-index: 999999999;
+  width: 150px;
+  height: 130px;
+}
+
+.menu-opciones .opcion {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.menu-opciones .opcion:hover {
+  background: #f0f0f0;
+}
+
+
+@media (max-width: 768px) {
+  .grupo-izquierdo {
+    margin-left: 0 !important;
+  }
+}
+
