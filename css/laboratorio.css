@@ -54,7 +54,7 @@
   padding: 10px 14px;
   border-radius: 6px;
   border: none;
-  background: #152340;
+  background: -webkit-linear-gradient(top, #337ab7 0%, #265a88 100%) !important;
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -684,4 +684,260 @@
 .celda-activa {
   border: 2px solid #04b3bb;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+/* Contenedor fijo superior */
+.acciones {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 50;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Botones con imagen */
+.btn-accion {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.btn-accion img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Hover efecto */
+.btn-accion:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+/* Ejecutar (play) con color especial */
+.btn-play-global img {
+  filter: drop-shadow(0px 0px 2px #00d15d);
+}
+
+.btn-play-global:hover {
+  background: rgba(0, 180, 70, 0.15);
+}
+
+/* Botones más pequeños en móviles */
+@media (max-width: 768px) {
+
+  .panel-notebook{
+    padding: 0px;
+  }
+
+  .btn-accion img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
+.btn-eliminar-celda {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #ff4b4b;
+  color: white;
+  border: none;
+  padding: 3px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.8;
+  z-index: 10;
+}
+
+.btn-eliminar-celda:hover {
+  opacity: 1;
+}
+.celda {
+  position: relative; /* necesario para que el botón se posicione */
+}
+
+/* Tooltip SIN flecha */
+.btn-accion {
+  position: relative;
+}
+
+/* El texto del tooltip */
+.btn-accion::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;          /* lo coloca arriba del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background: #20385a;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 13px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+
+  z-index: 99999;        /* asegura que quede arriba del header */
+}
+
+/* Mostrar tooltip */
+.btn-accion:hover::after {
+  opacity: 1;
+}
+
+
+
+/**MODAL*/
+
+/* Fondo borroso */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  z-index: 2000;
+}
+
+/* Contenido modal */
+.modal-contenido {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 100%;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-cerrar {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border: none;
+  background: #007279;
+  color: white;
+  border-radius: 6px;
+}
+
+/* Tabla responsiva */
+.tabla-responsive {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.tabla-fuentes {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-fuentes th,
+.tabla-fuentes td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-fuentes th {
+  background: #007279;
+  color: white;
+}
+
+.tabla-fuentes td button {
+  background: #04b3bb;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+
+
+
+.modal-archivo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-archivo.oculto {
+  display: none;
+}
+
+.modal-archivo .modal-contenido {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+}
+
+.modal-archivo h2 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.modal-archivo label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.modal-archivo input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-acciones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-cancelar {
+  background: #bbb;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.btn-confirmar {
+  background: #337ab7;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
 }
