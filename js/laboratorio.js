@@ -150,7 +150,7 @@ let celdaActiva = null;
   });
 
 
-  function agregarCeldaCodigo() {
+function agregarCeldaCodigo(contenido = null) {
   const notebook = document.getElementById('notebook-scroll');
   const totalCeldasCodigo = notebook.querySelectorAll('.celda-codigo').length;
   const nuevaId = totalCeldasCodigo + 1;
@@ -178,7 +178,7 @@ let celdaActiva = null;
   // Inicializar Monaco
   require(['vs/editor/editor.main'], function () {
     const nuevoEditor = monaco.editor.create(editorDiv, {
-      value: `# Código por default: Hola Mundo\nprint("Hola mundo")`,
+      value: contenido || `# Código por default: Hola Mundo\nprint("Hola mundo")`,
       language: 'python',
       theme: 'vs-light',
       automaticLayout: true,
@@ -189,12 +189,14 @@ let celdaActiva = null;
     celda.addEventListener('click', () => {
       document.querySelectorAll('.celda').forEach(c => c.classList.remove('celda-activa'));
       celda.classList.add('celda-activa');
+
       // Guardar referencia del editor activo
       window.editorActivo = nuevoEditor;
       window.resultadoActivo = resultadoDiv;
     });
   });
 }
+
 
 // Botón global ejecutar
 document.querySelector('.btn-play-global').addEventListener('click', () => {
@@ -255,3 +257,270 @@ document.querySelectorAll('.celda:not(.celda-codigo)').forEach(celda => {
 
 // Conectar botón de agregar texto
 document.getElementById('btnAgregarTexto').addEventListener('click', agregarCeldaTexto);
+
+// Delegación de eventos para escuchar clics en las opciones "Usar"
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("usar")) {
+
+        // Encontrar el contenedor .fuente-item más cercano
+        const fuenteItem = e.target.closest(".fuente-item");
+
+        // Obtener el identificador de la fuente
+        const idFuente = fuenteItem.getAttribute("identificador");
+
+        // Código base con sustitución de id_fuente
+        const codigo = 
+`from repositorioBanxico import consultarFuente
+
+try:
+    respuesta = consultarFuente('${idFuente}')
+
+    if not respuesta:
+        print("No se obtuvo información.")
+    else:
+        print("JSON recibido:", respuesta)
+
+except Exception as e:
+    print("Ocurrió un error al consultar la fuente:", str(e))`;
+
+        // Insertar la celda de código (usa tu función actual)
+        agregarCeldaCodigo(codigo);
+    }
+});
+
+
+document.querySelector('.btn-eliminar-global').addEventListener('click', () => {
+    const celdaActiva = document.querySelector('.celda.celda-activa');
+    if (!celdaActiva) {
+        alert("Selecciona una celda para eliminar.");
+        return;
+    }
+
+    // Si es celda de código y es el editor activo, limpiarlo
+    if (celdaActiva.classList.contains('celda-codigo')) {
+        if (window.editorActivo) window.editorActivo = null;
+        if (window.resultadoActivo) window.resultadoActivo = null;
+    }
+
+    celdaActiva.remove();
+});
+
+
+document.addEventListener("click", function(event) {
+    // Verifica que el clic sea en un botón con clase .eliminar
+    if (event.target.classList.contains("eliminar")) {
+        
+        // Encuentra el contenedor .fuente-item correspondiente
+        const fuente = event.target.closest(".fuente-item");
+        
+        if (fuente) {
+            fuente.remove(); // Elimina el elemento completo
+        }
+    }
+});
+
+
+document.addEventListener("click", function(event) {
+    // Detectar clic en la opción usarArchivo
+    if (event.target.classList.contains("usarArchivo")) {
+
+        // Obtener la fuente relacionada
+        const fuente = event.target.closest(".fuente-item");
+
+        if (!fuente) return;
+
+        const archivo = fuente.getAttribute("archivo");
+        const extension = fuente.getAttribute("extension");
+
+        // Crear el código personalizado
+        const codigo = 
+`from repositorioLocalBanxico import leerArchivo
+
+df = leerArchivo("${archivo}", "${extension}")
+print(df.head())`;
+
+        // Agregar la celda usando tu misma función
+        agregarCeldaCodigo(codigo);
+    }
+});
+
+
+
+/*Modal*/
+
+// Fuente de datos (INSTITUCIONALES DE EJEMPLO)
+const catalogoFuentes = [
+  {
+    nombre: "Operaciones de Préstamo",
+    descripcion: "Costo promedio ponderado de préstamos concertados"
+  },
+  {
+    nombre: "Operaciones de Reporto",
+    descripcion: "Volumen, contrapartes, tasas y plazos"
+  },
+  {
+    nombre: "Derivados cambiarios",
+    descripcion: "Volumen operado, tipo de contrato y vencimiento"
+  }
+];
+
+// Función para generar UUID (simple y rápido)
+function generarUUID() {
+  return crypto.randomUUID();
+}
+
+// Abrir Modal
+document.getElementById("agregarFuenteInstitucional").addEventListener("click", () => {
+  const cuerpoTabla = document.querySelector("#tablaFuentes tbody");
+  cuerpoTabla.innerHTML = "";
+
+  catalogoFuentes.forEach(fuente => {
+    const uuid = generarUUID();
+
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${fuente.nombre}</td>
+      <td>${fuente.descripcion}</td>
+      <td><button class="usar-fuente-catalogo" data-uuid="${uuid}" data-nombre="${fuente.nombre}" data-descripcion="${fuente.descripcion}">Usar</button></td>
+    `;
+
+    cuerpoTabla.appendChild(fila);
+  });
+
+  document.getElementById("modalFuentes").style.display = "flex";
+});
+
+// Cerrar Modal
+document.getElementById("cerrarModalFuentes").addEventListener("click", () => {
+  document.getElementById("modalFuentes").style.display = "none";
+});
+
+
+document.addEventListener("click", function(event) {
+
+  if (event.target.classList.contains("usar-fuente-catalogo")) {
+
+    const uuid = event.target.dataset.uuid;
+    const nombre = event.target.dataset.nombre;
+    const descripcion = event.target.dataset.descripcion;
+
+    // 🔥 Ajustado para usar la clase fuentesInstitucionales
+    const contenedor = document.querySelector(".fuentesInstitucionales");
+
+    const div = document.createElement("div");
+    div.classList.add("fuente-item");
+    div.setAttribute("identificador", uuid);
+
+    div.innerHTML = `
+      <img src="img/info.png" class="fuente-icono" alt="icono">
+      <span class="fuente-nombre">${nombre}: ${descripcion}</span>
+
+      <div class="fuente-menu">
+        <button class="menu-btn">☰</button>
+        <div class="menu-opciones">
+          <button class="opcion usar">Usar</button>
+          <button class="opcion eliminar">Remover</button>
+        </div>
+      </div>
+    `;
+
+    contenedor.appendChild(div);
+
+    // Cerrar modal
+    document.getElementById("modalFuentes").style.display = "none";
+  }
+
+});
+
+
+
+document.getElementById("agregarFuenteLocal").addEventListener("click", () => {
+  document.getElementById("modalArchivo").classList.remove("oculto");
+});
+
+
+document.getElementById("btnCancelarArchivo").addEventListener("click", () => {
+  document.getElementById("modalArchivo").classList.add("oculto");
+});
+
+
+document.getElementById("btnAgregarArchivo").addEventListener("click", () => {
+  const nombreManual = document.getElementById("nombreArchivoManual").value.trim();
+  const archivoInput = document.getElementById("archivoLocal");
+
+  if (!archivoInput.files.length) {
+    alert("Selecciona un archivo.");
+    return;
+  }
+
+  const archivo = archivoInput.files[0];
+  const nombreReal = archivo.name.split('.').slice(0, -1).join('.');
+  const extension = archivo.name.split('.').pop();
+
+  const nombreFinal = nombreManual || nombreReal;
+
+  // Buscar contenedor correcto
+  const contenedor = document.querySelector(".fuentesLocales");
+  if (!contenedor) {
+    console.error("No existe el contenedor .fuentesLocales");
+    return;
+  }
+
+  // Crear nodo fuente-item
+  const div = document.createElement("div");
+  div.classList.add("fuente-item");
+  div.setAttribute("archivo", nombreReal);
+  div.setAttribute("extension", extension);
+
+  div.innerHTML = `
+      <img src="img/document.png" class="fuente-icono" alt="icono">
+      <span class="fuente-nombre">${nombreFinal}</span>
+      <div class="fuente-menu">
+          <button class="menu-btn">☰</button>
+          <div class="menu-opciones">
+              <button class="opcion usarArchivo">Usar</button>
+              <button class="opcion eliminar">Remover</button>
+          </div>
+      </div>
+  `;
+
+  contenedor.appendChild(div);
+
+  // Volver a enganchar eventos
+  enlazarEventosFuente(div);
+
+  // Cerrar modal
+  document.getElementById("modalArchivo").classList.add("oculto");
+
+  // Reset inputs
+  document.getElementById("nombreArchivoManual").value = "";
+  document.getElementById("archivoLocal").value = "";
+});
+
+
+
+function enlazarEventosFuente(fuenteItem) {
+
+  const btnEliminar = fuenteItem.querySelector(".opcion.eliminar");
+  const btnUsarArchivo = fuenteItem.querySelector(".opcion.usarArchivo");
+
+  if (btnEliminar) {
+    btnEliminar.addEventListener("click", () => {
+      fuenteItem.remove();
+    });
+  }
+
+  if (btnUsarArchivo) {
+    btnUsarArchivo.addEventListener("click", () => {
+      const archivo = fuenteItem.getAttribute("archivo");
+      const ext = fuenteItem.getAttribute("extension");
+
+      agregarCeldaCodigoPersonalizado(`
+from repositorioLocalBanxico import leerArchivo
+
+df = leerArchivo("${archivo}", "${ext}")
+print(df.head())
+      `);
+    });
+  }
+}
